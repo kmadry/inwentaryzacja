@@ -1,0 +1,358 @@
+:root {
+  --bg: #e6e4df;
+  --ink: #23262b;
+  --ink-2: #5b5f66;
+  --line: #c9c6bf;
+  --line-2: #d6d3cd;
+  --accent: #b9780f;
+  --accent-ink: #ffffff;
+  --green: #3f7d58;
+  --red: #b3412e;
+  --field: #f1efeb;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1e21;
+    --ink: #e6e4df;
+    --ink-2: #9a9da3;
+    --line: #3a3d42;
+    --line-2: #2c2f33;
+    --accent: #e0a63a;
+    --accent-ink: #1c1e21;
+    --green: #5fa97c;
+    --red: #e06a54;
+    --field: #25282c;
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.page {
+  max-width: 44rem;
+  padding: 1.25rem 1rem 4rem;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-stretch: 85%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.block {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.muted {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+/* status */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.status .dot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.status--on {
+  color: var(--green);
+}
+.status--off {
+  color: var(--red);
+}
+
+/* masa */
+.mass {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  line-height: 0.9;
+}
+.mass-num {
+  font-size: clamp(5rem, 28vw, 9.5rem);
+  font-weight: 800;
+  font-stretch: 62%;
+  font-variation-settings: "wdth" 62;
+  letter-spacing: -0.01em;
+}
+.mass-unit {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-stretch: 62%;
+  color: var(--ink-2);
+}
+.bottles {
+  font-size: 1.1rem;
+}
+.bottles strong {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* skrzynki */
+.crates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+.crate {
+  display: grid;
+  grid-template-columns: repeat(5, 0.85rem);
+  grid-auto-rows: 0.85rem;
+  gap: 0.2rem;
+  padding: 0.3rem;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+}
+.slot {
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+}
+.slot--full {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.crates-more {
+  font-weight: 700;
+  font-stretch: 75%;
+  font-size: 1.2rem;
+}
+.empty {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* wykres */
+.chart {
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+.chart-plot {
+  position: relative;
+  height: 11rem;
+  margin-top: 1rem;
+  border-bottom: 2px solid var(--ink);
+}
+.chart-plot svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.chart .grid {
+  stroke: var(--line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.chart .line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.chart .line--hold {
+  stroke-dasharray: 4 4;
+  opacity: 0.7;
+}
+.tick {
+  position: absolute;
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.tick--y {
+  left: 0;
+  transform: translateY(-115%);
+  padding-right: 0.3rem;
+  background: var(--bg);
+}
+.chart-x {
+  position: relative;
+  height: 1.1rem;
+}
+.tick--x {
+  top: 0;
+  transform: translateX(-50%);
+}
+
+/* zdarzenia */
+.events {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.events th {
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 0 0.4rem 0.4rem 0;
+  border-bottom: 1px solid var(--ink);
+}
+.events td {
+  padding: 0.45rem 0.4rem 0.45rem 0;
+  border-bottom: 1px solid var(--line-2);
+  white-space: nowrap;
+}
+.events .num {
+  text-align: right;
+}
+.events th:last-child,
+.events td:last-child {
+  padding-right: 0;
+}
+.ev--in .delta {
+  color: var(--green);
+  font-weight: 700;
+}
+.ev--out .delta {
+  color: var(--red);
+  font-weight: 700;
+}
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--ink-2);
+  border-radius: 3px;
+  color: var(--ink-2);
+  cursor: help;
+}
+
+/* formularze */
+.btn {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 2.75rem;
+}
+.btn--accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.btn:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.calib {
+  display: grid;
+  gap: 0.4rem;
+}
+.calib label {
+  font-weight: 600;
+}
+.row {
+  display: flex;
+  gap: 0.5rem;
+}
+input {
+  font: inherit;
+  flex: 1;
+  min-width: 0;
+  max-width: 14rem;
+  padding: 0.6rem 0.7rem;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  background: var(--field);
+  color: var(--ink);
+}
+.msg {
+  margin-top: 0.6rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid currentColor;
+  font-size: 0.95rem;
+}
+.msg--ok {
+  color: var(--green);
+}
+.msg--err {
+  color: var(--red);
+}
+
+/* błąd */
+.error {
+  margin-top: 1.5rem;
+  padding: 1rem 0 1rem 1rem;
+  border-left: 4px solid var(--red);
+  display: grid;
+  gap: 0.6rem;
+}
+.error h2 {
+  color: var(--red);
+  font-size: 1.15rem;
+}
