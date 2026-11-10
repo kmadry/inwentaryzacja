@@ -11,7 +11,7 @@ const patterns = [
   /service_role/,
   /SUPABASE_SECRET_KEY/,
 ];
-const secret = process.env.SUPABASE_SECRET_KEY;
+const secret = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 function* walk(dir) {
   for (const name of readdirSync(dir)) {

@@ -31,7 +31,8 @@ export function getStationId(): number {
 export function db(): SupabaseClient {
   if (cached) return cached;
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY;
+  // SUPABASE_SERVICE_ROLE_KEY – nazwa ustawiana przez integrację Supabase ↔ Vercel.
+  const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   const missing = [!url && "SUPABASE_URL", !key && "SUPABASE_SECRET_KEY"].filter(Boolean);
   if (missing.length > 0 || !url || !key) {
     throw new AppError(

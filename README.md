@@ -8,7 +8,7 @@ do `readings`; cała logika (gramy, butelki, zdarzenia, tarowanie, kalibracja) j
 | Zmienna | Wymagana | Opis |
 |---|---|---|
 | `SUPABASE_URL` | tak | Adres projektu, np. `https://tmpdlgnnktdhxbadcqvf.supabase.co` |
-| `SUPABASE_SECRET_KEY` | tak | Klucz **secret** (`sb_secret_…`) lub `service_role`. Używany wyłącznie na serwerze. **Nie** dodawaj prefiksu `NEXT_PUBLIC_`. |
+| `SUPABASE_SECRET_KEY` | tak | Klucz **secret** (`sb_secret_…`) lub `service_role`. Używany wyłącznie na serwerze. **Nie** dodawaj prefiksu `NEXT_PUBLIC_`. Zamiast niego może być `SUPABASE_SERVICE_ROLE_KEY` (ustawia go integracja Supabase ↔ Vercel). |
 | `APP_PASSWORD` | nie | Hasło Basic Auth (login dowolny). Brak = strona otwarta. |
 | `STATION_ID` | nie | Id stacji w `stations` (domyślnie `1`). |
 
