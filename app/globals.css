@@ -119,6 +119,41 @@ h1 {
   color: var(--red);
 }
 
+.head-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.9rem;
+}
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+}
+.live-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+}
+.live--live .live-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live--live .live-dot {
+    animation: none;
+  }
+}
+
 /* masa */
 .mass {
   display: flex;

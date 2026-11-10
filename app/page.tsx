@@ -2,6 +2,7 @@ import { AutoRefresh } from "@/components/AutoRefresh";
 import { Chart } from "@/components/Chart";
 import { Crates } from "@/components/Crates";
 import { DeviceStatus } from "@/components/DeviceStatus";
+import { LiveUpdates } from "@/components/LiveUpdates";
 import { CalibrateForm, TareForm } from "@/components/Forms";
 import { bottlesFor, detectEvents } from "@/lib/compute";
 import { EMPTY_BOTTLE_G, EVENT_MIN_G, FULL_BOTTLE_G, MEDIAN_SAMPLES, OFFLINE_AFTER_MIN, REFRESH_MS } from "@/lib/config";
@@ -147,7 +148,12 @@ export default async function Page() {
     <main className="page">
       <header className="head">
         <h1>Magazyn · waga</h1>
-        {data && <DeviceStatus lastSeenMs={data.lastSeenMs} serverNowMs={data.nowMs} offlineAfterMin={OFFLINE_AFTER_MIN} />}
+        {data && (
+          <div className="head-status">
+            <DeviceStatus lastSeenMs={data.lastSeenMs} serverNowMs={data.nowMs} offlineAfterMin={OFFLINE_AFTER_MIN} />
+            <LiveUpdates latestId={data.latestId} />
+          </div>
+        )}
       </header>
       {data ? <Content data={data} /> : <ErrorPanel error={error} />}
       <AutoRefresh ms={REFRESH_MS} />

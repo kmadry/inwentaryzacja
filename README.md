@@ -55,6 +55,9 @@ oraz wartość `SUPABASE_SECRET_KEY`, jeśli jest w env).
 
 - **Status**: online, gdy ostatni odczyt < 6 min temu. Liczony w przeglądarce co 5 s, więc zmienia się na
   czerwony bez przeładowania; dane odświeżane co 15 s (`router.refresh()`).
+- **Podgląd na żywo**: `/api/live` (Server-Sent Events) co 2 s sprawdza po stronie serwera najnowszy odczyt
+  i wysyła przeglądarce tylko jego id; nowy odczyt pojawia się na stronie w ~2 s. Połączenie trwa max 55 s
+  (limit funkcji Vercel), potem przeglądarka łączy się ponownie. Odświeżanie co 15 s działa dalej jako zapas.
 - **Masa**: ostatni odczyt wg czasu zdarzenia; ujemne → 0. Butelki = `round(g / 822)`, skrzynki po 20.
 - **Wykres 24 h**: linia schodkowa (SVG), przerywana od ostatniego odczytu do „teraz”.
 - **Zdarzenia**: `delta = g[i] − g[i−1]`, |delta| ≥ 158 g. Reszta od wielokrotności 822 g > 250 g → „niejednoznaczne”.

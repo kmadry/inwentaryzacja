@@ -75,6 +75,8 @@ export type Dashboard = {
   current: Point | null;
   /** Czas odebrania ostatniego odczytu przez bazę (created_at) – do statusu urządzenia. */
   lastSeenMs: number | null;
+  /** id ostatniego odebranego odczytu – do podglądu na żywo */
+  latestId: number | null;
   truncated: boolean;
 };
 
@@ -133,6 +135,7 @@ export async function getDashboard(): Promise<Dashboard> {
     points,
     current: points.at(-1) ?? null,
     lastSeenMs: last ? Date.parse(last.created_at) : null,
+    latestId: last ? last.id : null,
     truncated,
   };
 }

@@ -10,8 +10,12 @@ export const BOTTLES_PER_CRATE = 20;
 export const EVENT_MIN_G = 158;
 /** Po ilu minutach bez odczytu urządzenie uznajemy za offline. */
 export const OFFLINE_AFTER_MIN = 6;
-/** Interwał auto-odświeżania strony [ms]. */
+/** Interwał auto-odświeżania strony [ms] (zapas, gdy podgląd na żywo nie działa). */
 export const REFRESH_MS = 15000;
+/** Co ile serwer sprawdza nowe odczyty dla podglądu na żywo [ms]. */
+export const LIVE_POLL_MS = 2000;
+/** Maksymalna długość jednego połączenia na żywo [s] – potem przeglądarka łączy się ponownie. */
+export const LIVE_MAX_S = 55;
 
 /** Reszta z dzielenia przez FULL_BOTTLE_G, powyżej której zdarzenie jest „niejednoznaczne” [g]. */
 export const AMBIGUOUS_REMAINDER_G = 250;
